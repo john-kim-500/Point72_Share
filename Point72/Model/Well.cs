@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Point72
+﻿namespace Point72
 {
     /// <summary>
     /// Models of the well output
@@ -12,7 +6,6 @@ namespace Point72
     public class Well
     {
         private double initialOutput;
-        private double dailyDecayAmount;
 
         /// <summary>
         /// Create instance of <see cref="Well"/>
@@ -22,18 +15,43 @@ namespace Point72
         public Well(double initialOutput, double dailyDecayAmount)
         {
             this.initialOutput = initialOutput;
-            this.dailyDecayAmount = dailyDecayAmount;
+            this.Decay = dailyDecayAmount;
+            this.Age = 0;
         }
 
-        public double DailyOutput(int elapsedDay)
+        /// <summary>
+        /// Get output, given the age of the well
+        /// </summary>
+        public double Output
         {
-            double ret = (this.initialOutput - this.dailyDecayAmount * elapsedDay);
-            if (ret<0D)
+            get
             {
-                ret = 0D;
-            }
+                double ret = (this.initialOutput - this.Decay * this.Age);
+                if (ret < 0D)
+                {
+                    ret = 0D;
+                }
 
-            return ret;
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// Get the daily decay of well, by number of barrels
+        /// </summary>
+        public double Decay
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Get/set age of the well, in days
+        /// </summary>
+        public int Age
+        {
+            get;
+            set;
         }
     }
 }

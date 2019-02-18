@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using Point72.Model;
+﻿using NUnit.Framework;
 
-namespace Point72.Model.Test
+namespace Point72.Model
 {
     /// <summary>
     /// Test cases for the Well class model
@@ -22,11 +16,11 @@ namespace Point72.Model.Test
         {
             Well testWell = new Well(10, 0.5);
 
-            Assert.AreEqual(10, testWell.DailyOutput(0));
+            Assert.AreEqual(10, testWell.Output);
 
             testWell = new Well(5, 100);
 
-            Assert.AreEqual(5, testWell.DailyOutput(0));
+            Assert.AreEqual(5, testWell.Output);
         }
 
         /// <summary>
@@ -36,12 +30,16 @@ namespace Point72.Model.Test
         public static void DecayRate()
         {
             Well testWell = new Well(12, 0.5);
-            Assert.AreEqual(6, testWell.DailyOutput(12));
-            Assert.AreEqual(0, testWell.DailyOutput(24));
+            testWell.Age = 12;
+            Assert.AreEqual(6, testWell.Output);
+            testWell.Age = 24;
+            Assert.AreEqual(0, testWell.Output);
 
             testWell = new Well(100, 10);
-            Assert.AreEqual(50, testWell.DailyOutput(5));
-            Assert.AreEqual(0, testWell.DailyOutput(10));
+            testWell.Age = 5;
+            Assert.AreEqual(50, testWell.Output);
+            testWell.Age = 10;
+            Assert.AreEqual(0, testWell.Output);
         }
 
         /// <summary>
@@ -51,10 +49,12 @@ namespace Point72.Model.Test
         public static void ZeroOutputAfterExceedingLife()
         {
             Well testWell = new Well(12, 0.5);
-            Assert.AreEqual(0, testWell.DailyOutput(1000));
+            testWell.Age = 100;
+            Assert.AreEqual(0, testWell.Output);
 
             testWell = new Well(100, 10);
-            Assert.AreEqual(0, testWell.DailyOutput(1000));
+            testWell.Age = 1000;
+            Assert.AreEqual(0, testWell.Output);
         }
     }
 }

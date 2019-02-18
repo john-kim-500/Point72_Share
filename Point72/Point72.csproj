@@ -49,10 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Drill.cs" />
+    <Compile Include="Model\Output.cs" />
+    <Compile Include="Model\WellBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Well.cs" />
+    <Compile Include="Test\Output.cs" />
     <Compile Include="Test\Well.cs" />
+    <Compile Include="Test\WellBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
