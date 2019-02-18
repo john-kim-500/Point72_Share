@@ -13,35 +13,6 @@ namespace Point72.Model
         private int day;
         private List<Well> wells = new List<Well>();
 
-        #region DayOutput struct
-        public struct DayOutput
-        {
-            public DayOutput(int days, double output)
-            {
-                this.Day = days;
-                this.Output = output;
-
-            }
-
-            public int Day
-            {
-                get;
-                private set;
-            }
-
-            public double Output
-            {
-                get;
-                private set;
-            }
-
-            public override string ToString()
-            {
-                return String.Format(CultureInfo.InvariantCulture, "Max Output @ : Day = {0} Barrels = {1}", Day, Output);
-            }
-        }
-        #endregion
-
         public Output()
         {
             this.Drills = new List<WellBuilder>();
